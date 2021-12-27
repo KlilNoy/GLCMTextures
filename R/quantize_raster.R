@@ -37,7 +37,7 @@ quantize_raster<- function(r, n_levels, method, min_val=NULL, max_val=NULL, file
     message("Error: method must be 'equal range' or 'equal prob'")
   }
   rq <- terra::classify(r, rcl = qrules, include.lowest = TRUE, right = FALSE)
-  rq<- terra::as.int(rq)
+  terra::values(rq)<- as.integer(terra::values(rq))
 
   if(og_class =="RasterLayer"){
     rq<- raster::raster(rq)
